@@ -1,7 +1,6 @@
 # CLI Task Tracker
 
-A small command-line app for saving and managing tasks with Python. 
-Tasks are stored in a `tasks.json` file in your home folder, so they remain available between runs.
+A small command-line app for managing tasks with Python. Add tasks, mark them in progress or done, and filter them by status. Tasks are saved in a `tasks.json` file in your home folder, so they remain available between runs.
 
 ## Requirements
 
@@ -10,34 +9,16 @@ Tasks are stored in a `tasks.json` file in your home folder, so they remain avai
 
 ## Install
 
-Install with [pipx](https://pipx.pypa.io):
+Install with [pipx](https://pipx.pypa.io). This makes the `task-cli` command work from any terminal:
 
 ```powershell
-pipx install https://github.com/rathoreshivank/task-tracker-cli/archive/refs/heads/main.zip
+pipx install https://github.com/rathoreshivank/task-tracker-cli/archive/refs/tags/v1.0.0.zip
 ```
 
 Or with pip:
 
 ```powershell
-pip install https://github.com/rathoreshivank/task-tracker-cli/archive/refs/heads/main.zip
-```
-
-If you have Git installed, this also works:
-
-```powershell
-pipx install git+https://github.com/rathoreshivank/task-tracker-cli.git
-```## Install
-
-Install with [pipx](https://pipx.pypa.io):
-
-```powershell
-pipx install https://github.com/rathoreshivank/task-tracker-cli/archive/refs/heads/main.zip
-```
-
-Or with pip:
-
-```powershell
-pip install https://github.com/rathoreshivank/task-tracker-cli/archive/refs/heads/main.zip
+pip install https://github.com/rathoreshivank/task-tracker-cli/archive/refs/tags/v1.0.0.zip
 ```
 
 If you have Git installed, this also works:
@@ -46,18 +27,10 @@ If you have Git installed, this also works:
 pipx install git+https://github.com/rathoreshivank/task-tracker-cli.git
 ```
 
-## Run without installing
-
-From the project folder, run the Python file directly:
+To uninstall:
 
 ```powershell
-python task_cli.py <command>
-```
-
-For example:
-
-```powershell
-python task_cli.py list
+pipx uninstall task-tracker-cli
 ```
 
 ## Usage
@@ -65,6 +38,8 @@ python task_cli.py list
 ```powershell
 task-cli <command>
 ```
+
+Run `task-cli help` to see all commands.
 
 ## Commands
 
@@ -74,24 +49,16 @@ task-cli <command>
 task-cli add "Buy groceries"
 ```
 
-Put the entire description in quotes if it contains spaces. Blank descriptions
-are rejected.
+Put the whole description in quotes. Blank descriptions are rejected.
 
 ### List tasks
 
 ```powershell
 task-cli list
-```
-
-Filter by status:
-
-```powershell
 task-cli list todo
 task-cli list in-progress
 task-cli list done
 ```
-
-Valid statuses are `todo`, `in-progress`, and `done`.
 
 ### Update a task description
 
@@ -99,7 +66,7 @@ Valid statuses are `todo`, `in-progress`, and `done`.
 task-cli update 1 "Buy groceries and fruit"
 ```
 
-Replace `1` with the task ID shown by `list`. Descriptions cannot be blank.
+Replace `1` with the task ID shown by `list`.
 
 ### Change a task's status
 
@@ -108,20 +75,25 @@ task-cli mark-in-progress 1
 task-cli mark-done 1
 ```
 
-Replace `1` with the task ID.
-
 ### Delete a task
 
 ```powershell
 task-cli delete 1
 ```
 
-Deleting a task removes it from `tasks.json`.
+## Task statuses
+
+Every task has one of three statuses: `todo`, `in-progress`, or `done`.
 
 ## Data file
 
-The app creates or updates `tasks.json` in your home folder (~/tasks.json).
-Each task has an ID, description, status, creation time, and last-updated time.
-If the data file is missing, the app starts with an empty task list. If its
-JSON is corrupted or its task entries are invalid, the app reports an error;
-fix the file or restore a valid copy before running a command that reads tasks.
+Tasks are stored in `tasks.json` in your home folder (`C:\Users\<you>\tasks.json` on Windows, `~/tasks.json` on Mac and Linux). Each task has an ID, description, status, creation time and last-updated time.
+
+- If the file is missing, the app starts with an empty list and creates it on the first save.
+- If the file is corrupted or has invalid entries, the app shows an error instead of overwriting your data. Fix the file or delete it, then try again.
+
+## Run without installing
+
+```powershell
+python task_cli.py <command>
+```
