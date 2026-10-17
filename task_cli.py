@@ -50,12 +50,15 @@ def save_tasks(tasks):
 
 def main():
     if len(sys.argv) < 2:
-        print("Please provide a command. Example: add, list, delete")
+        print_help()
         return
 
     command = sys.argv[1]
+    
+    if command in ("help", "-h", "--help"):
+        print_help()  
 
-    if command == "add":
+    elif command == "add":
         if len(sys.argv) < 3:
             print('Please provide a task. Example: add "Buy groceries"')
             return
@@ -127,6 +130,7 @@ def main():
 
     else:
         print("Unknown command:", command)
+        print("Run 'task-cli help' to see all commands.")
         
 
 # add task
@@ -214,9 +218,31 @@ def update_Status(status_id, new_status):
             task["status"] = new_status
             task["updatedAt"] =  datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             save_tasks(tasks)
-            print(f"Task {status_id} markes as done")
+            print(f"Task {status_id} marked as {new_status}")
             return
     print(f"Task with ID {status_id} not found")
-    
+
+def print_help():
+    print("""Task Tracker CLI
+
+Usage: task-cli <command> [arguments]
+
+Commands:
+  add "description"          Add a new task
+  list                       Show all tasks
+  list todo                  Show tasks not started
+  list in-progress           Show tasks in progress
+  list done                  Show completed tasks
+  update <id> "description"  Change a task's description
+  delete <id>                Delete a task
+  mark-in-progress <id>      Mark a task as in progress
+  mark-done <id>             Mark a task as done
+  help                       Show this message
+
+Examples:
+  task-cli add "Buy groceries"
+  task-cli mark-done 1
+""")
+
 if __name__ == "__main__":
     main()
