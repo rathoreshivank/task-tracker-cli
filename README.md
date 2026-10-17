@@ -10,21 +10,41 @@ Tasks are stored in a `tasks.json` file in your home folder, so they remain avai
 
 ## Install
 
-Recommended: install it with [pipx](https://pipx.pypa.io). The `task-cli`
-command will then be available from your terminal:
+Install with [pipx](https://pipx.pypa.io):
+
+```powershell
+pipx install https://github.com/rathoreshivank/task-tracker-cli/archive/refs/heads/main.zip
+```
+
+Or with pip:
+
+```powershell
+pip install https://github.com/rathoreshivank/task-tracker-cli/archive/refs/heads/main.zip
+```
+
+If you have Git installed, this also works:
+
+```powershell
+pipx install git+https://github.com/rathoreshivank/task-tracker-cli.git
+```## Install
+
+Install with [pipx](https://pipx.pypa.io):
+
+```powershell
+pipx install https://github.com/rathoreshivank/task-tracker-cli/archive/refs/heads/main.zip
+```
+
+Or with pip:
+
+```powershell
+pip install https://github.com/rathoreshivank/task-tracker-cli/archive/refs/heads/main.zip
+```
+
+If you have Git installed, this also works:
 
 ```powershell
 pipx install git+https://github.com/rathoreshivank/task-tracker-cli.git
 ```
-
-You can also install it with pip:
-
-```powershell
-pip install git+https://github.com/rathoreshivank/task-tracker-cli.git
-```
-
-With pip, make sure the environment's scripts folder is on your PATH to run
-`task-cli` directly.
 
 ## Run without installing
 
