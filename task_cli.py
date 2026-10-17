@@ -3,7 +3,7 @@ import json
 import os
 from datetime import datetime
 
-FILE_NAME = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tasks.json")
+FILE_NAME = os.path.join(os.path.expanduser("~"), "tasks.json")
 
 REQUIRED_KEYS = ["id", "description", "status", "createdAt", "updatedAt"]
 
@@ -218,4 +218,5 @@ def update_Status(status_id, new_status):
             return
     print(f"Task with ID {status_id} not found")
     
-main()
+if __name__ == "__main__":
+    main()

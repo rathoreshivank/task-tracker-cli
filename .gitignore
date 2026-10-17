@@ -1,1 +1,3 @@
 tasks.json
+*.egg-info/
+__pycache__/
