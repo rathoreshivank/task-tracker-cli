@@ -35,6 +35,24 @@ pipx uninstall task-tracker-cli
 
 ## Usage
 
+Start interactive mode by running `task-cli` without a command:
+
+```powershell
+task-cli
+```
+
+At the `task>` prompt, enter commands directly, without the `task-cli` prefix. For example:
+
+```text
+task> add "Buy groceries"
+task> list
+task> mark-done 1
+```
+
+Descriptions containing spaces should be surrounded by quotes. Type `help` to see the available commands, or `exit` or `quit` to leave interactive mode. Pressing Ctrl+C also exits.
+
+You can also run a command directly from your terminal:
+
 ```powershell
 task-cli <command>
 ```
@@ -80,6 +98,14 @@ task-cli mark-done 1
 ```powershell
 task-cli delete 1
 ```
+
+### Clear all tasks
+
+```powershell
+task-cli clear-all
+```
+
+The app asks you to type `yes` before deleting all tasks. Any other response cancels the operation.
 
 ## Task statuses
 

@@ -127,6 +127,12 @@ def main():
             return
         delete_task(int(sys.argv[2]))
 
+    elif command == "clear-all":
+        if len(sys.argv) > 2:
+            print("Usage: clear-all")
+            return
+        clear_all_tasks()
+
     elif command == "mark-done":
         if len(sys.argv) < 3:
             print("Usage: mark-done <id>")
@@ -232,6 +238,20 @@ def delete_task(task_id):
 
     print(f"Task with ID {task_id} not found")
 
+def clear_all_tasks():
+    try:
+        confirmation = input("This will delete all tasks. Type 'yes' to confirm: ")
+    except (EOFError, KeyboardInterrupt):
+        print("\nClear-all cancelled.")
+        return
+
+    if confirmation.strip().lower() != "yes":
+        print("Clear-all cancelled.")
+        return
+
+    save_tasks([])
+    print("All tasks cleared.")
+
 # status update
 def update_Status(status_id, new_status):
     tasks = load_tasks()
@@ -258,6 +278,7 @@ Commands:
   list done                  Show completed tasks
   update <id> "description"  Change a task's description
   delete <id>                Delete a task
+  clear-all                  Delete all tasks (requires confirmation)
   mark-in-progress <id>      Mark a task as in progress
   mark-done <id>             Mark a task as done
   help                       Show this message
@@ -265,6 +286,7 @@ Commands:
 Examples:
   task-cli add "Buy groceries"
   task-cli mark-done 1
+  task-cli clear-all
 """)
 
 if __name__ == "__main__":
