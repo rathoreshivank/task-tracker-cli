@@ -2,6 +2,7 @@ import sys
 import json
 import os
 from datetime import datetime
+import shlex
 
 FILE_NAME = os.path.join(os.path.expanduser("~"), "tasks.json")
 
@@ -47,10 +48,32 @@ def save_tasks(tasks):
     with open(FILE_NAME, "w") as file:
         json.dump(tasks, file, indent=4)
 
+def interactive_mode():
+    print("Task Tracker CLI. Type 'help' for commands, 'exit' to quit.")
+    while True:
+        try:
+            line = input("task> ").strip()
+        except (EOFError, KeyboardInterrupt):
+            print()
+            break
+
+        if not line:
+            continue
+        if line in ("exit", "quit"):
+            break
+
+        try:
+            parts = shlex.split(line)
+        except ValueError:
+            print("Unbalanced quotes. Try again.")
+            continue
+
+        sys.argv = ["task-cli"] + parts
+        main()
 
 def main():
     if len(sys.argv) < 2:
-        print_help()
+        interactive_mode()
         return
 
     command = sys.argv[1]
