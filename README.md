@@ -12,13 +12,13 @@ A small command-line app for managing tasks with Python. Add tasks, mark them in
 Install with [pipx](https://pipx.pypa.io). This makes the `task-cli` command work from any terminal:
 
 ```powershell
-pipx install https://github.com/rathoreshivank/task-tracker-cli/archive/refs/tags/v1.0.0.zip
+pipx install https://github.com/rathoreshivank/task-tracker-cli/archive/refs/tags/v1.1.0.zip
 ```
 
 Or with pip:
 
 ```powershell
-pip install https://github.com/rathoreshivank/task-tracker-cli/archive/refs/tags/v1.0.0.zip
+pip install https://github.com/rathoreshivank/task-tracker-cli/archive/refs/tags/v1.1.0.zip
 ```
 
 If you have Git installed, this also works:
@@ -35,6 +35,18 @@ pipx uninstall task-tracker-cli
 
 ## Usage
 
+Run `task-cli` without a command to enter interactive mode. See [Interactive mode](#interactive-mode) for details.
+
+You can also run a command directly from your terminal:
+
+```powershell
+task-cli <command>
+```
+
+Run `task-cli help` to see all commands.
+
+## Interactive mode
+
 Start interactive mode by running `task-cli` without a command:
 
 ```powershell
@@ -50,14 +62,6 @@ task> mark-done 1
 ```
 
 Descriptions containing spaces should be surrounded by quotes. Type `help` to see the available commands, or `exit` or `quit` to leave interactive mode. Pressing Ctrl+C also exits.
-
-You can also run a command directly from your terminal:
-
-```powershell
-task-cli <command>
-```
-
-Run `task-cli help` to see all commands.
 
 ## Commands
 
@@ -102,10 +106,11 @@ task-cli delete 1
 ### Clear all tasks
 
 ```powershell
+task-cli clear
 task-cli clear-all
 ```
 
-The app asks you to type `yes` before deleting all tasks. Any other response cancels the operation.
+Both commands ask you to type `yes` before deleting all tasks. Any other response cancels the operation.
 
 ## Task statuses
 

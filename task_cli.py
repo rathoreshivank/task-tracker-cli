@@ -127,9 +127,9 @@ def main():
             return
         delete_task(int(sys.argv[2]))
 
-    elif command == "clear-all":
+    elif command in ("clear", "clear-all"):
         if len(sys.argv) > 2:
-            print("Usage: clear-all")
+            print(f"Usage: {command}")
             return
         clear_all_tasks()
 
@@ -278,7 +278,7 @@ Commands:
   list done                  Show completed tasks
   update <id> "description"  Change a task's description
   delete <id>                Delete a task
-  clear-all                  Delete all tasks (requires confirmation)
+  clear, clear-all           Delete all tasks (requires confirmation)
   mark-in-progress <id>      Mark a task as in progress
   mark-done <id>             Mark a task as done
   help                       Show this message
@@ -286,7 +286,7 @@ Commands:
 Examples:
   task-cli add "Buy groceries"
   task-cli mark-done 1
-  task-cli clear-all
+  task-cli clear
 """)
 
 if __name__ == "__main__":
